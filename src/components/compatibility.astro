@@ -1,0 +1,83 @@
+---
+import { Picture } from "astro:assets";
+import Minikube from "assets/minikube.png";
+import K3s from "assets/k3s.png";
+import Rancher from "assets/rancher.png";
+import AWS from "assets/aws.png";
+import Azure from "assets/azure.png";
+import GCP from "assets/gcp.png";
+import DigitalOcean from "assets/digitalocean.png";
+import OpenShift from "assets/openshift.png";
+
+const currently_dist = [
+  { src: Rancher, alt: "Rancher" },
+  { src: K3s, alt: "K3s" },
+  { src: Minikube, alt: "Minikube" },
+];
+
+const new_dist = [
+  { src: AWS, alt: "AWS" },
+  { src: GCP, alt: "GCP" },
+  { src: Azure, alt: "Azure" },
+  { src: DigitalOcean, alt: "DigitalOcean" },
+  { src: OpenShift, alt: "OpenShift" },
+];
+---
+
+<section class="py-16">
+  <div class="text-center max-w-4xl mx-auto">
+    <h2 class="text-2xl sm:text-3xl font-bold mb-2">
+      KubExplorer is compatible with Kubernetes distributions
+    </h2>
+    <p class="text-sm sm:text-base text-gray-400">
+      Rancher, K3s, Minikube
+    </p>
+  </div>
+
+  <div class="flex flex-wrap justify-center items-center gap-8 mt-12">
+    {
+      currently_dist.map((item) => (
+        <div class="w-20 sm:w-24 md:w-28 flex justify-center">
+          <Picture
+            src={item.src}
+            alt={item.alt}
+            widths={[100, 200]}
+            sizes="(max-width: 200px) 100vw, 120px"
+            format="avif"
+            loading="lazy"
+          />
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<section class="py-16">
+  <div class="text-center max-w-4xl mx-auto">
+    <h2 class="text-2xl sm:text-3xl font-bold mb-2">
+      Upcoming support for more Kubernetes distributions
+    </h2>
+    <p class="text-sm sm:text-base text-gray-400">
+      AWS, GCP, Azure, and more
+    </p>
+  </div>
+
+  <div class="flex flex-wrap justify-center items-center gap-8 mt-12">
+    {
+      new_dist.map((item) => (
+        <div class="w-20 sm:w-24 md:w-28 flex justify-center">
+          <Picture
+            src={item.src}
+            alt={item.alt}
+            widths={[100, 200]}
+            sizes="(max-width: 200px) 100vw, 120px"
+            format="avif"
+            loading="lazy"
+          />
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+
