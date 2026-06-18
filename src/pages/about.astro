@@ -1,57 +1,127 @@
 ---
-import { getCollection } from "astro:content";
-import { Picture } from "astro:assets";
 import Layout from "@layouts/Layout.astro";
 import Container from "@components/container.astro";
 import Sectionhead from "@components/sectionhead.astro";
+import Link from "@components/ui/link.astro";
+import { Icon } from "astro-icon/components";
 
-// Filter team entries with 'draft: false' & date before current date
-const publishedTeamMembers = await getCollection("team", ({ data }) => {
-  return !data.draft && data.publishDate < new Date();
-});
+const audience = [
+  { title: "Kubernetes engineers", icon: "bx:bxs-network-chart" },
+  { title: "Cloud engineers", icon: "bx:bxs-cloud" },
+  { title: "DevOps engineers", icon: "bx:bxs-cog" },
+  { title: "Software engineers", icon: "bx:bx-code-alt" },
+];
+
+const values = [
+  {
+    title: "Open source at the core",
+    description:
+      "Kubexplorer is and always will be open source. The community edition is free, and our paid tiers are built on the same foundation.",
+    icon: "bx:bxl-github",
+  },
+  {
+    title: "Experience that delights",
+    description:
+      "Managing Kubernetes shouldn't feel like a chore. We obsess over a clean, intuitive interface you'll actually enjoy using every day.",
+    icon: "bx:bxs-magic-wand",
+  },
+  {
+    title: "Productivity first",
+    description:
+      "From multi-cluster management to heuristic troubleshooting, every feature exists to help engineers move faster and stay in control.",
+    icon: "bx:bxs-rocket",
+  },
+];
 ---
 
 <Layout title="About">
   <Container>
     <Sectionhead>
-      <Fragment slot="title">About</Fragment>
-      <Fragment slot="desc">We are a small passionate team.</Fragment>
+      <Fragment slot="title">About Kubexplorer</Fragment>
+      <Fragment slot="desc">
+        An open-source desktop app that makes Kubernetes management simple,
+        powerful, and pleasant.
+      </Fragment>
     </Sectionhead>
 
-    <div class="flex flex-col gap-3 mx-auto max-w-4xl mt-16">
-      <h2 class="font-bold text-3xl text-gray-800">
-        Empowering the world with Astro.
+    <!-- Story -->
+    <div class="flex flex-col gap-4 mx-auto max-w-3xl mt-16">
+      <h2 class="font-bold text-3xl text-ink">
+        Kubernetes management, without the complexity.
       </h2>
-      <p class="text-lg leading-relaxed text-slate-500">
-        We're a multi-cultural team from around the world! We come from diverse
-        backgrounds, bringing different personalities, experiences and skills to
-        the job. This is what makes our team so special.
+      <p class="text-lg leading-relaxed text-muted">
+        Kubernetes is powerful — but managing clusters often means juggling
+        kubeconfigs, terminals, and a patchwork of tools. Kubexplorer brings it
+        all into one sleek desktop application: connect multiple clusters,
+        monitor health in real time, back up resources, and resolve issues with
+        heuristic guidance.
+      </p>
+      <p class="text-lg leading-relaxed text-muted">
+        Our goal is simple — help engineers do their best work and actually
+        enjoy their daily routine, all on top of a thriving open-source
+        foundation.
       </p>
     </div>
-    <div class="grid md:grid-cols-3 gap-10 mx-auto max-w-4xl mt-12">
-      {
-        publishedTeamMembers.map((teamMemberEntry) => (
-          <div class="group">
-            <div class="w-full aspect-square">
-              <Picture
-                src={teamMemberEntry.data.avatar.src}
-                alt={teamMemberEntry.data.avatar.alt}
-                sizes="(max-width: 800px) 100vw, 400px"
-                width={400}
-                height={400}
-                class="w-full rounded-md rounded transition group-hover:-translate-y-1 group-hover:shadow-xl bg-white object-cover object-center aspect-square"
-              />
-            </div>
 
-            <div class="mt-4 text-center">
-              <h2 class="text-lg text-gray-800">{teamMemberEntry.data.name}</h2>
-              <h3 class="text-sm text-slate-500">
-                {teamMemberEntry.data.title}
-              </h3>
+    <!-- Who it's for -->
+    <div class="mx-auto max-w-4xl mt-20">
+      <h2 class="font-bold text-2xl text-ink text-center">Built for engineers</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-8">
+        {
+          audience.map((item) => (
+            <div class="rounded-lg border border-slate-200 p-6 text-center hover:border-primary transition">
+              <div class="bg-primary/10 rounded-full p-3 w-12 h-12 mx-auto flex items-center justify-center">
+                <Icon class="text-primary w-6 h-6" name={item.icon} />
+              </div>
+              <h3 class="font-medium text-ink mt-4">{item.title}</h3>
             </div>
-          </div>
-        ))
-      }
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Values -->
+    <div class="mx-auto max-w-5xl mt-20">
+      <h2 class="font-bold text-2xl text-ink text-center">What we believe</h2>
+      <div class="grid md:grid-cols-3 gap-8 mt-8">
+        {
+          values.map((item) => (
+            <div class="rounded-lg border border-slate-200 p-6">
+              <div class="bg-primary rounded-full p-2 w-10 h-10 flex items-center justify-center">
+                <Icon class="text-white w-5 h-5" name={item.icon} />
+              </div>
+              <h3 class="font-semibold text-lg mt-4 text-ink">{item.title}</h3>
+              <p class="text-muted mt-2 leading-relaxed">{item.description}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div
+      class="mx-auto max-w-4xl mt-20 mb-8 rounded-lg bg-ink text-white p-10 text-center">
+      <h2 class="text-2xl sm:text-3xl font-bold">Join us in building Kubexplorer</h2>
+      <p class="text-slate-300 mt-3 max-w-2xl mx-auto">
+        Kubexplorer is community-driven. Star the project, file ideas, or
+        contribute code — every bit helps make Kubernetes better for everyone.
+      </p>
+      <div class="mt-6 flex flex-col sm:flex-row gap-3 justify-center">
+        <Link
+          href="https://github.com/beto20/kubexplorer/releases"
+          target="_blank"
+          rel="noopener"
+          class="bg-primary hover:bg-primary-600 text-white border-transparent inline-flex gap-2 items-center justify-center">
+          <Icon class="w-5 h-5" name="bx:bxs-cloud-download" />
+          Download for Free
+        </Link>
+        <Link
+          href="/community"
+          style="inverted"
+          class="inline-flex items-center justify-center">
+          Get Involved
+        </Link>
+      </div>
     </div>
   </Container>
 </Layout>

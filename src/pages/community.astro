@@ -1,0 +1,104 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Container from "@components/container.astro";
+import Sectionhead from "@components/sectionhead.astro";
+import Link from "@components/ui/link.astro";
+import { Icon } from "astro-icon/components";
+
+const repo = "https://github.com/beto20/kubexplorer";
+
+const channels = [
+  {
+    title: "Star on GitHub",
+    description:
+      "Show your support and help others discover Kubexplorer by starring the repository.",
+    icon: "bx:bxs-star",
+    link: repo,
+    cta: "Star the repo",
+  },
+  {
+    title: "Report an issue",
+    description:
+      "Found a bug or have a feature request? Open an issue and help us improve.",
+    icon: "bx:bxs-bug",
+    link: `${repo}/issues`,
+    cta: "Open an issue",
+  },
+  {
+    title: "Join the discussion",
+    description:
+      "Ask questions, share setups, and connect with other Kubexplorer users.",
+    icon: "bx:bxs-conversation",
+    link: `${repo}/discussions`,
+    cta: "Start a discussion",
+  },
+  {
+    title: "Contribute",
+    description:
+      "Kubexplorer is open source. Pick up a good-first-issue or submit a pull request.",
+    icon: "bx:bx-git-pull-request",
+    link: `${repo}/blob/main/CONTRIBUTING.md`,
+    cta: "Read the guide",
+  },
+];
+---
+
+<Layout title="Community">
+  <Container>
+    <Sectionhead>
+      <Fragment slot="title">Community</Fragment>
+      <Fragment slot="desc">
+        Kubexplorer is open source and community-driven. Jump in — every contribution counts.
+      </Fragment>
+    </Sectionhead>
+
+    <div class="grid sm:grid-cols-2 gap-8 mx-auto max-w-4xl mt-16">
+      {
+        channels.map((item) => (
+          <a
+            href={item.link}
+            target="_blank"
+            rel="noopener"
+            class="group rounded-lg border border-slate-200 p-6 hover:border-primary transition flex flex-col">
+            <div class="bg-primary rounded-full p-2 w-10 h-10 flex items-center justify-center">
+              <Icon class="text-white w-5 h-5" name={item.icon} />
+            </div>
+            <h3 class="font-semibold text-lg mt-4 text-ink">{item.title}</h3>
+            <p class="text-muted mt-2 leading-relaxed flex-grow">
+              {item.description}
+            </p>
+            <span class="mt-4 text-primary font-medium inline-flex items-center gap-1 group-hover:gap-2 transition-all">
+              {item.cta}
+              <Icon class="w-4 h-4" name="bx:bx-right-arrow-alt" />
+            </span>
+          </a>
+        ))
+      }
+    </div>
+
+    <!-- Call to action -->
+    <div class="mx-auto max-w-4xl mt-16 mb-8 rounded-lg bg-ink text-white p-10 text-center">
+      <h2 class="text-2xl sm:text-3xl font-bold">Built by engineers, for engineers</h2>
+      <p class="text-slate-300 mt-3 max-w-2xl mx-auto">
+        Kubexplorer is made for Kubernetes, cloud, DevOps, and software engineers.
+        Help shape the roadmap and make K8s management better for everyone.
+      </p>
+      <div class="mt-6 flex flex-col sm:flex-row gap-3 justify-center">
+        <Link
+          href={repo}
+          target="_blank"
+          rel="noopener"
+          class="bg-primary hover:bg-primary-600 text-white border-transparent inline-flex gap-2 items-center justify-center">
+          <Icon class="w-5 h-5" name="bx:bxl-github" />
+          View on GitHub
+        </Link>
+        <Link
+          href="/docs"
+          style="inverted"
+          class="inline-flex items-center justify-center">
+          Read the Docs
+        </Link>
+      </div>
+    </div>
+  </Container>
+</Layout>

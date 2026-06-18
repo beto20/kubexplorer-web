@@ -1,4 +1,4 @@
-<!-- ---
+---
 import Layout from "@layouts/Layout.astro";
 import Container from "@components/container.astro";
 import Sectionhead from "@components/sectionhead.astro";
@@ -6,38 +6,37 @@ import PricingCard from "@components/pricing.astro";
 
 const pricing = [
   {
-    name: "Personal",
+    name: "Community",
     price: "Free",
+    tagline: "Open source, forever.",
     popular: false,
     features: [
-      "Lifetime free",
-      "Up to 3 users",
-      "Unlimited Pages",
-      "Astro Sub domain",
-      "Basic Integrations",
-      "Community Support",
+      "Multi-cluster management",
+      "Cluster monitoring & dashboards",
+      "Resource backup & restore",
+      "Unlimited clusters",
+      "All core features",
+      "Community support",
     ],
     button: {
-      text: "Get Started",
-      link: "/",
+      text: "Download for Free",
+      link: "https://github.com/beto20/kubexplorer/releases",
+      external: true,
     },
   },
   {
-    name: "Startup",
-    price: {
-      monthly: "$19",
-      annual: "$16",
-      discount: "10%",
-      original: "$24",
-    },
+    name: "Professional",
+    price: "$12",
+    period: "/ user / mo",
+    tagline: "For teams that want more power.",
     popular: true,
     features: [
-      "All Free Features",
-      "Up to 20 users",
-      "20 Custom domains",
-      "Unlimited Collaborators",
-      "Advanced Integrations",
-      "Priority Support",
+      "Everything in Community",
+      "Resource optimization (heuristic)",
+      "Troubleshooting assistant",
+      "Advanced monitoring & alerts",
+      "Scheduled & remote backups",
+      "Priority email support",
     ],
     button: {
       text: "Get Started",
@@ -47,18 +46,20 @@ const pricing = [
   {
     name: "Enterprise",
     price: "Custom",
+    tagline: "For organizations at scale.",
     popular: false,
     features: [
-      "All Pro Features",
-      "Unlimited Custom domains",
-      "99.99% Uptime SLA",
-      "SAML & SSO Integration",
-      "Dedicated Account Manager",
-      "24/7 Phone Support",
+      "Everything in Professional",
+      "SSO & SAML integration",
+      "RBAC & audit logs",
+      "Dedicated onboarding",
+      "99.9% uptime SLA",
+      "24/7 priority support",
     ],
     button: {
-      text: "Get Started",
-      link: "#",
+      text: "Contact Sales",
+      link: "mailto:sales@kubexplorer.io",
+      external: true,
     },
   },
 ];
@@ -69,12 +70,22 @@ const pricing = [
     <Sectionhead>
       <Fragment slot="title">Pricing</Fragment>
       <Fragment slot="desc">
-        Simple & Predictable pricing. No Surprises.
+        Start free and open source. Upgrade when your team needs more.
       </Fragment>
     </Sectionhead>
 
-    <div class="grid md:grid-cols-3 gap-10 mx-auto max-w-screen-lg mt-12">
+    <div
+      class="grid md:grid-cols-3 gap-8 items-stretch mx-auto max-w-screen-lg mt-16">
       {pricing.map((item) => <PricingCard plan={item} />)}
     </div>
+
+    <p class="text-center text-muted mt-10">
+      All plans are built on the open-source Kubexplorer core. Questions about
+      pricing?{" "}
+      <a
+        href="mailto:sales@kubexplorer.io"
+        class="text-primary font-medium hover:underline">Get in touch</a
+      >.
+    </p>
   </Container>
-</Layout> -->
+</Layout>
