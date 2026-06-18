@@ -1,0 +1,36 @@
+---
+layout: ../../layouts/DocsLayout.astro
+title: Resource Backup
+description: Back up and restore Kubernetes resources to prevent data loss.
+---
+
+Kubexplorer lets you capture the state of your Kubernetes resources so you can
+recover quickly from accidental changes or deletions.
+
+## What you can back up
+
+- Deployments, statefulsets, and daemonsets
+- Services, ingresses, and config maps
+- Secrets and other namespaced resources
+
+## Creating a backup
+
+From any resource or namespace view, choose **Backup** to export the current
+manifests. Backups are stored locally and can be organized per cluster and
+namespace.
+
+## Restoring
+
+Select a backup and choose **Restore** to re-apply the saved manifests to the
+target cluster. Review the diff before applying so you always know exactly
+what will change.
+
+<aside>
+Scheduled and remote backups are available on the Professional plan. See
+[pricing](/pricing) for details.
+</aside>
+
+## Related
+
+- [Multi-cluster Management](/docs/multi-cluster)
+- [Resource Optimization](/docs/optimization)

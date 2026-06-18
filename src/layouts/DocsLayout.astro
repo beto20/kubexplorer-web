@@ -1,0 +1,84 @@
+---
+import Container from "@components/container.astro";
+import Layout from "./Layout.astro";
+
+const { frontmatter } = Astro.props;
+
+const nav = [
+  {
+    group: "Getting Started",
+    items: [{ title: "Introduction", path: "/docs" }, { title: "Quick Start", path: "/docs/getting-started" }],
+  },
+  {
+    group: "Features",
+    items: [
+      { title: "Multi-cluster Management", path: "/docs/multi-cluster" },
+      { title: "Cluster Monitoring", path: "/docs/monitoring" },
+      { title: "Resource Backup", path: "/docs/backup" },
+      { title: "Resource Optimization", path: "/docs/optimization" },
+      { title: "Troubleshooting Assistant", path: "/docs/troubleshooting" },
+    ],
+  },
+];
+
+const current = Astro.url.pathname.replace(/\/$/, "");
+---
+
+<Layout title={`${frontmatter.title} — Docs`}>
+  <Container>
+    <div class="grid lg:grid-cols-[240px_1fr] gap-10 mt-14 mb-16">
+      <!-- Sidebar -->
+      <aside class="lg:border-r lg:border-slate-200 lg:pr-6">
+        <nav class="lg:sticky lg:top-8 space-y-6">
+          {
+            nav.map((section) => (
+              <div>
+                <p class="text-xs font-semibold uppercase tracking-wider text-muted mb-2">
+                  {section.group}
+                </p>
+                <ul class="space-y-1">
+                  {section.items.map((item) => (
+                    <li>
+                      <a
+                        href={item.path}
+                        aria-current={current === item.path ? "page" : undefined}
+                        class:list={[
+                          "block rounded-md px-3 py-1.5 text-sm transition",
+                          current === item.path
+                            ? "bg-primary/10 text-primary font-medium"
+                            : "text-muted hover:text-ink hover:bg-surface",
+                        ]}>
+                        {item.title}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))
+          }
+        </nav>
+      </aside>
+
+      <!-- Content -->
+      <article>
+        <h1 class="text-3xl lg:text-4xl font-bold lg:tracking-tight text-ink">
+          {frontmatter.title}
+        </h1>
+        {
+          frontmatter.description && (
+            <p class="text-lg text-muted mt-3">{frontmatter.description}</p>
+          )
+        }
+        <div
+          class="prose prose-slate max-w-none mt-8 prose-headings:text-ink prose-a:text-primary prose-strong:text-ink">
+          <slot />
+        </div>
+        <div class="mt-12 pt-6 border-t border-slate-200">
+          <a href="/docs" class="text-primary font-medium hover:underline"
+            >← Back to Docs</a
+          >
+        </div>
+      </article>
+    </div>
+  </Container>
+</Layout>
