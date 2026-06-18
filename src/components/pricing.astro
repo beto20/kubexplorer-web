@@ -48,16 +48,26 @@ const { plan } = Astro.props;
   </ul>
 
   <div class="flex mt-auto pt-8">
-    <Link
-      href={plan.button.link || "#"}
-      block
-      target={plan.button.external ? "_blank" : undefined}
-      rel={plan.button.external ? "noopener" : undefined}
-      style={plan.popular ? "primary" : "outline"}
-      class={plan.popular
-        ? "bg-primary hover:bg-primary-600 text-white border-transparent"
-        : ""}>
-      {plan.button.text || "Get Started"}
-    </Link>
+    {
+      plan.button.disabled ? (
+        <span
+          aria-disabled="true"
+          class="w-full rounded text-center px-5 py-2.5 border-2 border-transparent bg-slate-100 text-muted cursor-not-allowed">
+          {plan.button.text || "Coming soon"}
+        </span>
+      ) : (
+        <Link
+          href={plan.button.link || "#"}
+          block
+          target={plan.button.external ? "_blank" : undefined}
+          rel={plan.button.external ? "noopener" : undefined}
+          style={plan.popular ? "primary" : "outline"}
+          class={plan.popular
+            ? "bg-primary hover:bg-primary-600 text-white border-transparent"
+            : ""}>
+          {plan.button.text || "Get Started"}
+        </Link>
+      )
+    }
   </div>
 </div>
