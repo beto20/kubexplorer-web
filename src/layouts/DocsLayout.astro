@@ -45,7 +45,7 @@ const current = Astro.url.pathname.replace(/\/$/, "");
                         class:list={[
                           "block rounded-md px-3 py-1.5 text-sm transition",
                           current === item.path
-                            ? "bg-primary/10 text-primary font-medium"
+                            ? "bg-primary/10 text-primary-700 font-medium"
                             : "text-muted hover:text-ink hover:bg-surface",
                         ]}>
                         {item.title}
