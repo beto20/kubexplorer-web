@@ -1,0 +1,35 @@
+---
+layout: ../../layouts/DocsLayout.astro
+title: Troubleshooting Assistant
+description: Guided diagnostics with root-cause hints to resolve issues faster.
+---
+
+When something breaks, Kubexplorer helps you find the cause quickly with
+guided, heuristic diagnostics — so you spend less time debugging and more time
+building.
+
+## Guided diagnostics
+
+The assistant inspects unhealthy resources and walks you through the most
+likely causes. For a failing pod it checks common culprits such as:
+
+- Image pull errors and missing secrets
+- Crash loops and non-zero exit codes
+- Failing readiness or liveness probes
+- Insufficient resources or scheduling constraints
+
+## Root-cause hints
+
+For each issue, Kubexplorer presents a plain-language explanation, the relevant
+events and logs, and suggested next steps — all in one place, without
+switching back to the terminal.
+
+## Logs in context
+
+Stream container logs directly alongside the resource you're investigating, and
+jump between related pods and events to follow the trail.
+
+## Related
+
+- [Cluster Monitoring](/docs/monitoring)
+- [Resource Optimization](/docs/optimization)

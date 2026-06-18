@@ -1,41 +1,126 @@
 ---
-import { Picture } from "astro:assets";
-import heroImage from "assets/hero.png";
 import Link from "@components/ui/link.astro";
 import { Icon } from "astro-icon/components";
+
+const clusters = [
+  { name: "production", status: "bg-green-500" },
+  { name: "staging", status: "bg-primary" },
+  { name: "dev-eu", status: "bg-amber-400" },
+];
+
+const stats = [
+  { label: "Nodes", value: "24" },
+  { label: "Pods", value: "318" },
+  { label: "CPU", value: "62%" },
+];
+
+const bars = [55, 70, 40, 85, 60, 75, 50];
 ---
 
 <main
-  class="grid lg:grid-cols-2 place-items-center pt-16 pb-8 md:pt-12 md:pb-24" style="padding-top: 32px;">
-  <div class="py-6 md:order-1 hidden md:block">
-    <Picture
-      src={heroImage}
-      alt="Astronaut in the air"
-      widths={[200, 400, 600]}
-      sizes="(max-width: 800px) 100vw, 620px"
-      loading="eager"
-      format="avif"
-    />
+  class="grid lg:grid-cols-2 gap-10 place-items-center pt-12 pb-8 md:pt-12 md:pb-24">
+  <!-- Product mockup -->
+  <div class="w-full py-6 md:order-1 hidden md:block">
+    <div class="relative">
+      <div
+        class="absolute -inset-4 bg-primary/10 blur-2xl rounded-full"
+        aria-hidden="true">
+      </div>
+      <div
+        class="relative rounded-xl border border-slate-200 shadow-2xl bg-white overflow-hidden"
+        role="img"
+        aria-label="Kubexplorer dashboard preview">
+        <!-- Window chrome -->
+        <div
+          class="flex items-center gap-2 px-4 py-3 bg-surface border-b border-slate-200">
+          <span class="w-3 h-3 rounded-full bg-red-400"></span>
+          <span class="w-3 h-3 rounded-full bg-amber-400"></span>
+          <span class="w-3 h-3 rounded-full bg-green-400"></span>
+          <span class="ml-3 text-xs text-muted truncate"
+            >Kubexplorer — production</span
+          >
+        </div>
+        <div class="flex">
+          <!-- Sidebar -->
+          <aside
+            class="w-2/5 sm:w-1/3 bg-surface/60 border-r border-slate-200 p-3 space-y-2">
+            <p class="text-[10px] uppercase tracking-wider text-muted px-1">
+              Clusters
+            </p>
+            {
+              clusters.map((c, i) => (
+                <div
+                  class:list={[
+                    "flex items-center gap-2 rounded-md px-2 py-1.5 text-xs",
+                    i === 0 ? "bg-primary/10 text-ink font-medium" : "text-muted",
+                  ]}>
+                  <span class:list={["w-2 h-2 rounded-full", c.status]} />
+                  {c.name}
+                </div>
+              ))
+            }
+          </aside>
+          <!-- Main panel -->
+          <div class="flex-1 p-4 space-y-4">
+            <div class="grid grid-cols-3 gap-3">
+              {
+                stats.map((s) => (
+                  <div class="rounded-lg border border-slate-200 p-3">
+                    <p class="text-[10px] uppercase tracking-wider text-muted">
+                      {s.label}
+                    </p>
+                    <p class="text-lg font-bold text-ink mt-1">{s.value}</p>
+                  </div>
+                ))
+              }
+            </div>
+            <div class="rounded-lg border border-slate-200 p-3">
+              <p class="text-[10px] uppercase tracking-wider text-muted mb-2">
+                Resource usage
+              </p>
+              <div class="flex items-end gap-2 h-20">
+                {
+                  bars.map((h) => (
+                    <div
+                      class="flex-1 bg-primary/80 rounded-t"
+                      style={`height:${h}%`}
+                    />
+                  ))
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+
+  <!-- Copy -->
   <div>
+    <span
+      class="inline-flex items-center gap-1.5 rounded-full bg-primary/10 text-primary-700 text-sm font-medium px-3 py-1">
+      <Icon class="w-4 h-4" name="bx:bxl-github" /> Open source
+    </span>
     <h1
-      class="text-5xl lg:text-6xl xl:text-7xl font-bold lg:tracking-tight xl:tracking-tighter">
-      Navigate Your Kubernetes Landscape with KubExplorer
+      class="text-5xl lg:text-6xl xl:text-7xl font-bold lg:tracking-tight xl:tracking-tighter text-ink mt-4">
+      Navigate Your Kubernetes Landscape with <span class="text-primary"
+        >Kubexplorer</span
+      >
     </h1>
-    <p class="text-lg mt-4 text-slate-600 max-w-xl">
-      KubExplorer is a powerful desktop application that transforms 
-      Kubernetes management. With a sleek, intuitive interface and 
-      support for multiple clusters, it helps teams move faster, 
-      automate smarter, and stay in control—without the complexity.
+    <p class="text-lg mt-4 text-muted max-w-xl">
+      Kubexplorer is a powerful desktop application that transforms Kubernetes
+      management. With a sleek, intuitive interface and support for multiple
+      clusters, it helps teams move faster, automate smarter, and stay in
+      control—without the complexity.
     </p>
     <div class="mt-6 flex flex-col sm:flex-row gap-3">
       <Link
         href="https://github.com/beto20/kubexplorer/releases"
         target="_blank"
-        class="flex gap-1 items-center justify-center"
-        rel="noopener">
+        rel="noopener"
+        class="bg-primary hover:bg-primary-600 text-white border-transparent flex gap-1 items-center justify-center">
         <Icon class="text-white w-5 h-5" name="bx:bxs-cloud-download" />
-         Download for Free
+        Download for Free
       </Link>
       <Link
         size="lg"
@@ -45,7 +130,7 @@ import { Icon } from "astro-icon/components";
         class="flex gap-1 items-center justify-center"
         target="_blank">
         <Icon class="text-black w-4 h-4" name="bx:bxl-github" />
-         GitHub Repo
+        GitHub Repo
       </Link>
     </div>
   </div>

@@ -1,0 +1,39 @@
+---
+layout: ../../layouts/DocsLayout.astro
+title: Quick Start
+description: Install Kubexplorer and connect your first cluster in a few minutes.
+---
+
+## 1. Download &amp; install
+
+Kubexplorer is a desktop application available for macOS, Windows, and Linux.
+Grab the latest build from the [releases page](https://github.com/beto20/kubexplorer/releases)
+and run the installer for your platform.
+
+- **macOS** — open the `.dmg` and drag Kubexplorer to Applications.
+- **Windows** — run the `.exe` installer.
+- **Linux** — use the `.AppImage` or your distribution's package.
+
+## 2. Connect a cluster
+
+On first launch, Kubexplorer reads your existing `kubeconfig`
+(`~/.kube/config` by default) and lists every available context. Pick a
+context to connect — no extra configuration required.
+
+You can also point Kubexplorer at a custom kubeconfig path from
+**Settings → Clusters** if you keep configs outside the default location.
+
+## 3. Explore your workloads
+
+Once connected, the main dashboard shows cluster health, node and pod counts,
+and resource usage at a glance. From here you can:
+
+- Switch between clusters from the sidebar
+- Drill into namespaces, workloads, and individual resources
+- Monitor live metrics and events
+
+## Next steps
+
+- [Manage multiple clusters](/docs/multi-cluster)
+- [Monitor cluster health](/docs/monitoring)
+- [Back up your resources](/docs/backup)

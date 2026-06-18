@@ -1,0 +1,33 @@
+---
+layout: ../../layouts/DocsLayout.astro
+title: Resource Optimization
+description: Heuristic recommendations to reduce waste and improve performance.
+---
+
+Kubexplorer analyzes your workloads and surfaces heuristic recommendations to
+help you right-size resources — cutting waste without sacrificing reliability.
+
+## How it works
+
+Kubexplorer compares requested and observed resource usage across your
+workloads. Using heuristics, it flags:
+
+- **Over-provisioned** resources requesting far more CPU or memory than they use
+- **Under-provisioned** resources at risk of throttling or eviction
+- **Missing requests/limits** that can lead to unpredictable scheduling
+
+## Acting on recommendations
+
+Each recommendation explains the reasoning and suggests a target value. Review
+the suggestion, then apply it directly or copy the adjusted manifest into your
+own workflow.
+
+<aside>
+Recommendations are heuristic and meant as guidance — always validate against
+your workload's real requirements before applying in production.
+</aside>
+
+## Related
+
+- [Cluster Monitoring](/docs/monitoring)
+- [Troubleshooting Assistant](/docs/troubleshooting)
