@@ -1,11 +1,17 @@
 ---
 import Container from "@components/container.astro";
+import Dropdown from "@components/navbar/dropdown.astro";
 import Link from "@components/ui/link.astro";
 import { Astronav, MenuItems, MenuIcon } from "astro-navbar";
 import { Icon } from "astro-icon/components";
 
+const products = [
+  { title: "Tider — Desktop", path: "/#features" },
+  { title: "TiderOps Platform", path: "/platform" },
+  { title: "Tider Pilot", path: "/pilot" },
+];
+
 const menuitems = [
-  { title: "Features", path: "/#features" },
   { title: "Pricing", path: "/pricing" },
   { title: "Docs", path: "/docs" },
   { title: "Community", path: "/community" },
@@ -18,14 +24,15 @@ const menuitems = [
     <Astronav>
       <div class="flex w-full lg:w-auto items-center justify-between">
         <a href="/" class="text-lg">
-          <span class="font-bold text-ink">Kubexplorer</span>
+          <span class="font-bold text-ink">TiderOps</span>
         </a>
         <div class="block lg:hidden">
           <MenuIcon class="w-4 h-4 text-ink" />
         </div>
       </div>
       <MenuItems class="hidden w-full lg:w-auto mt-2 lg:flex lg:mt-0 lg:items-center">
-        <ul class="flex flex-col lg:flex-row lg:gap-3">
+        <ul class="flex flex-col lg:flex-row lg:gap-3 lg:items-center">
+          <Dropdown title="Products" lastItem={false} items={products} />
           {
             menuitems.map((item) => (
               <li>
@@ -40,14 +47,14 @@ const menuitems = [
         </ul>
         <div class="lg:hidden flex items-center mt-3 gap-4">
           <a
-            href="https://github.com/beto20/kubexplorer"
+            href="https://github.com/beto20/tider"
             target="_blank"
             rel="noopener"
             class="text-muted hover:text-primary transition">
             <Icon class="w-6 h-6" name="bx:bxl-github" />
           </a>
           <Link
-            href="https://github.com/beto20/kubexplorer/releases"
+            href="https://github.com/beto20/tider/releases"
             target="_blank"
             rel="noopener"
             size="md"
@@ -59,15 +66,15 @@ const menuitems = [
     </Astronav>
     <div class="hidden lg:flex items-center gap-4">
       <a
-        href="https://github.com/beto20/kubexplorer"
+        href="https://github.com/beto20/tider"
         target="_blank"
         rel="noopener"
-        aria-label="Kubexplorer on GitHub"
+        aria-label="Tider on GitHub"
         class="text-muted hover:text-primary transition">
         <Icon class="w-6 h-6" name="bx:bxl-github" />
       </a>
       <Link
-        href="https://github.com/beto20/kubexplorer/releases"
+        href="https://github.com/beto20/tider/releases"
         target="_blank"
         rel="noopener"
         size="md"
