@@ -6,6 +6,6 @@ import icon from "astro-icon";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://kubexplorer.io",
+  site: "https://tiderops.io",
   integrations: [tailwind(), mdx(), sitemap(), icon()],
 });

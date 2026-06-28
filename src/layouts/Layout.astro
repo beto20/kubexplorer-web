@@ -20,8 +20,8 @@ const resolvedImageWithDomain = new URL(
 const { title } = Astro.props;
 
 const makeTitle = title
-  ? title + " | " + "Kubexplorer"
-  : "Kubexplorer";
+  ? title + " | " + "TiderOps"
+  : "TiderOps";
 ---
 
 <!DOCTYPE html>
@@ -35,7 +35,7 @@ const makeTitle = title
     <!-- <link rel="preload" as="image" href={src} alt="Hero" /> -->
     <SEO
       title={makeTitle}
-      description="Kubexplorer is a powerful desktop application that transforms Kubernetes management. With a sleek, intuitive interface and support for multiple clusters."
+      description="TiderOps is building the suite for Kubernetes operations. Tider, the open-source desktop app, transforms Kubernetes management with a sleek, intuitive interface and support for multiple clusters."
       canonical={canonicalURL}
 
       openGraph={{
@@ -46,14 +46,14 @@ const makeTitle = title
           image: resolvedImageWithDomain,
         },
         image: {
-          alt: "Kubexplorer — Kubernetes management desktop app",
+          alt: "Tider — Kubernetes management desktop app",
         },
       }}
       twitter={{
         card: "summary_large_image",
         title: makeTitle,
         image: resolvedImageWithDomain,
-        imageAlt: "Kubexplorer — Kubernetes management desktop app",
+        imageAlt: "Tider — Kubernetes management desktop app",
       }}
     />
   </head>

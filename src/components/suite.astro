@@ -1,0 +1,86 @@
+---
+import { Icon } from "astro-icon/components";
+
+const products = [
+  {
+    name: "Tider",
+    tagline: "Desktop app",
+    description:
+      "The open-source desktop app for Kubernetes — connect clusters, monitor health, back up resources, and troubleshoot from one place.",
+    icon: "bx:bxs-grid-alt",
+    link: "/docs",
+    cta: "Explore Tider",
+    status: "Available now",
+    available: true,
+  },
+  {
+    name: "TiderOps Platform",
+    tagline: "Internal developer platform (IDP)",
+    description:
+      "A team platform layer for organizations: shared workspaces, scorecards, governance, and operational standards across every cluster.",
+    icon: "bx:bxs-network-chart",
+    link: "/platform",
+    cta: "Learn more",
+    status: "Coming soon",
+    available: false,
+  },
+  {
+    name: "Tider Pilot",
+    tagline: "AI assistant",
+    description:
+      "AI-assisted root cause and safe remediation — understand what broke, what changed to cause it, and whether the fix is safe.",
+    icon: "bx:bxs-bot",
+    link: "/pilot",
+    cta: "Learn more",
+    status: "Coming soon",
+    available: false,
+  },
+];
+---
+
+<section id="suite" class="py-16 scroll-mt-24">
+  <div class="max-w-3xl">
+    <h2 class="text-3xl lg:text-4xl font-bold lg:tracking-tight text-ink">
+      The TiderOps suite
+    </h2>
+    <p class="text-lg mt-4 text-muted">
+      TiderOps is the home for Kubernetes operations. It starts with Tider, the
+      open-source desktop app — with a team platform and an AI assistant on the
+      way.
+    </p>
+  </div>
+
+  <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-8 mt-12">
+    {
+      products.map((item) => (
+        <a
+          href={item.link}
+          class="group relative rounded-xl border border-slate-200 p-6 hover:border-primary transition flex flex-col">
+          <span
+            class:list={[
+              "absolute top-4 right-4 text-[11px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full",
+              item.available
+                ? "bg-primary/10 text-primary-700"
+                : "bg-slate-100 text-muted",
+            ]}>
+            {item.status}
+          </span>
+          <div class="bg-primary rounded-full p-2 w-10 h-10 flex items-center justify-center">
+            <Icon class="text-white w-5 h-5" name={item.icon} />
+          </div>
+          <h3 class="font-semibold text-lg mt-4 text-ink">{item.name}</h3>
+          <p class="text-xs uppercase tracking-wider text-muted mt-1">
+            {item.tagline}
+          </p>
+          <p class="text-muted mt-3 leading-relaxed flex-grow">
+            {item.description}
+          </p>
+          <span class="mt-4 text-primary font-medium inline-flex items-center gap-1 group-hover:gap-2 transition-all">
+            {item.cta}
+            <Icon class="w-4 h-4" name="bx:bx-right-arrow-alt" />
+          </span>
+        </a>
+      ))
+    }
+  </div>
+</section>
