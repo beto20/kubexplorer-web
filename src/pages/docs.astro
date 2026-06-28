@@ -1,0 +1,159 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Container from "@components/container.astro";
+import Sectionhead from "@components/sectionhead.astro";
+import Link from "@components/ui/link.astro";
+import { Icon } from "astro-icon/components";
+
+const quickstart = [
+  {
+    step: "1",
+    title: "Download & install",
+    description:
+      "Grab the latest release for your OS and install the Kubexplorer desktop app.",
+  },
+  {
+    step: "2",
+    title: "Connect a cluster",
+    description:
+      "Kubexplorer auto-detects your kubeconfig. Pick a context to connect — no extra setup required.",
+  },
+  {
+    step: "3",
+    title: "Explore & manage",
+    description:
+      "Monitor workloads, back up resources, and get heuristic recommendations from a single interface.",
+  },
+];
+
+const topics = [
+  {
+    title: "Multi-cluster Management",
+    description:
+      "Connect, switch, and manage multiple clusters from one place without juggling kubeconfigs.",
+    icon: "bx:bxs-briefcase",
+    link: "/docs/multi-cluster",
+  },
+  {
+    title: "Cluster Monitoring",
+    description:
+      "Real-time dashboards for cluster health, workloads, and resource usage.",
+    icon: "bx:bxs-window-alt",
+    link: "/docs/monitoring",
+  },
+  {
+    title: "Resource Backup",
+    description:
+      "Back up and restore deployments, services, and configs to prevent data loss.",
+    icon: "bx:bxs-data",
+    link: "/docs/backup",
+  },
+  {
+    title: "Resource Optimization",
+    description:
+      "Heuristic recommendations to right-size over- and under-provisioned resources.",
+    icon: "bx:bxs-bot",
+    link: "/docs/optimization",
+  },
+  {
+    title: "Troubleshooting Assistant",
+    description:
+      "Guided, heuristic diagnostics with root-cause hints and logs to resolve issues faster.",
+    icon: "bx:bxs-file-find",
+    link: "/docs/troubleshooting",
+  },
+];
+---
+
+<Layout title="Documentation">
+  <Container>
+    <Sectionhead>
+      <Fragment slot="title">Documentation</Fragment>
+      <Fragment slot="desc">
+        Everything you need to install Kubexplorer and get productive with your clusters.
+      </Fragment>
+    </Sectionhead>
+
+    <!-- Quick start -->
+    <div class="mx-auto max-w-4xl mt-16">
+      <h2 class="text-2xl font-bold text-ink">Quick start</h2>
+      <div class="grid sm:grid-cols-3 gap-6 mt-6">
+        {
+          quickstart.map((item) => (
+            <div class="rounded-lg border border-slate-200 bg-surface p-6">
+              <span class="inline-flex items-center justify-center w-9 h-9 rounded-full bg-primary text-white font-bold">
+                {item.step}
+              </span>
+              <h3 class="font-semibold text-lg mt-4 text-ink">{item.title}</h3>
+              <p class="text-muted mt-2 leading-relaxed">{item.description}</p>
+            </div>
+          ))
+        }
+      </div>
+      <div class="mt-8 flex flex-col sm:flex-row gap-3">
+        <Link
+          href="https://github.com/beto20/kubexplorer/releases"
+          target="_blank"
+          rel="noopener"
+          class="bg-primary hover:bg-primary-600 text-white border-transparent inline-flex gap-2 items-center justify-center">
+          <Icon class="w-5 h-5" name="bx:bxs-cloud-download" />
+          Download Kubexplorer
+        </Link>
+        <Link
+          href="/docs/getting-started"
+          style="outline"
+          class="inline-flex items-center justify-center">
+          Read the full guide
+        </Link>
+      </div>
+    </div>
+
+    <!-- Guides by topic -->
+    <div class="mx-auto max-w-5xl mt-20">
+      <h2 class="text-2xl font-bold text-ink">Guides by feature</h2>
+      <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-8 mt-8">
+        {
+          topics.map((item) => (
+            <a
+              href={item.link}
+              class="group rounded-lg border border-slate-200 p-6 hover:border-primary transition flex flex-col">
+              <div class="bg-primary rounded-full p-2 w-10 h-10 flex items-center justify-center">
+                <Icon class="text-white w-5 h-5" name={item.icon} />
+              </div>
+              <h3 class="font-semibold text-lg mt-4 text-ink">{item.title}</h3>
+              <p class="text-muted mt-2 leading-relaxed">{item.description}</p>
+              <span class="mt-4 text-primary font-medium inline-flex items-center gap-1 group-hover:gap-2 transition-all">
+                Read guide
+                <Icon class="w-4 h-4" name="bx:bx-right-arrow-alt" />
+              </span>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Help -->
+    <div class="mx-auto max-w-4xl mt-20 mb-8 rounded-lg bg-surface border border-slate-200 p-8 text-center">
+      <h2 class="text-2xl font-bold text-ink">Need more help?</h2>
+      <p class="text-muted mt-2">
+        Browse the full reference, report a bug, or ask the community.
+      </p>
+      <div class="mt-6 flex flex-col sm:flex-row gap-3 justify-center">
+        <Link
+          href="https://github.com/beto20/kubexplorer"
+          target="_blank"
+          rel="noopener"
+          style="outline"
+          class="inline-flex gap-2 items-center">
+          <Icon class="w-5 h-5" name="bx:bxl-github" />
+          GitHub Repository
+        </Link>
+        <Link
+          href="/community"
+          class="bg-primary hover:bg-primary-600 text-white border-transparent">
+          Join the Community
+        </Link>
+      </div>
+    </div>
+  </Container>
+</Layout>

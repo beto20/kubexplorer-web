@@ -35,19 +35,25 @@ const makeTitle = title
     <!-- <link rel="preload" as="image" href={src} alt="Hero" /> -->
     <SEO
       title={makeTitle}
-      description="KubExplorer is a powerful desktop application that transforms Kubernetes management. With a sleek, intuitive interface and support for multiple clusters."
+      description="Kubexplorer is a powerful desktop application that transforms Kubernetes management. With a sleek, intuitive interface and support for multiple clusters."
       canonical={canonicalURL}
 
       openGraph={{
         basic: {
           url: canonicalURL,
           type: "website",
-          title: `Kubexplorer`,
+          title: makeTitle,
           image: resolvedImageWithDomain,
         },
         image: {
-          alt: "Kubexplorer",
+          alt: "Kubexplorer — Kubernetes management desktop app",
         },
+      }}
+      twitter={{
+        card: "summary_large_image",
+        title: makeTitle,
+        image: resolvedImageWithDomain,
+        imageAlt: "Kubexplorer — Kubernetes management desktop app",
       }}
     />
   </head>

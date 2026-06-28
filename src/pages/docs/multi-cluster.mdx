@@ -1,0 +1,34 @@
+---
+layout: ../../layouts/DocsLayout.astro
+title: Multi-cluster Management
+description: Connect, switch, and manage multiple Kubernetes clusters from one interface.
+---
+
+Kubexplorer brings all of your clusters into a single window, so you no longer
+have to juggle kubeconfigs or switch contexts from the terminal.
+
+## Adding clusters
+
+Kubexplorer automatically discovers every context in your `kubeconfig`. Each
+context becomes a cluster entry in the sidebar. To add clusters from another
+config file, go to **Settings → Clusters → Add kubeconfig**.
+
+## Switching context
+
+Select any cluster in the sidebar to make it active. Kubexplorer keeps a
+per-cluster view of namespaces, workloads, and metrics, so switching is
+instant and your place is preserved.
+
+## Working across clusters
+
+- **Status at a glance** — connection state and health are shown next to each
+  cluster in the sidebar.
+- **Independent sessions** — actions you take always target the active cluster,
+  preventing accidental cross-cluster changes.
+- **Namespaces** — filter any view by namespace to focus on the workloads you
+  care about.
+
+## Related
+
+- [Cluster Monitoring](/docs/monitoring)
+- [Troubleshooting Assistant](/docs/troubleshooting)
